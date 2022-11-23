@@ -10,21 +10,26 @@
 <option value="GL"> Teknik Geologi </option>
 </select>
 </form>
-<button id="btn_tampil"> Tampilkan </button>
 <br>
-<div id="tampil_data"></div>
+<div id="tampil_data"><table border="1">
+<tr>
+<th> No. </th>
+<th> NIM </th>
+<th> Nama </th>
+<th> Program Studi </th>
+</tr></div>
 <script src = "https://code.jquery.com/jquery-3.6.1.min.js" integrity = "sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin = "anonymous">
 </script>
 <script>
 $(document).ready(function () {
-    $("#btn_tampil").click(function () {
-        var pro = $("#prodi option:selected").val();
+    $("#prodi").change(function () {
+        var pro = $(this).val();
         $.ajax({
-            type : "GET",
             url : "tampil.php",
-            data : {'pro':pro},
-            success : function (response) {
-                $("#tampil_data").load("tampil.php");
+            type : "POST",
+            data : "request=" + pro,
+            success : function (data) {
+                $("#tampil_data").html(data);
             }
         });
     });
