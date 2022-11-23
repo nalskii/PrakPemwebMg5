@@ -7,11 +7,11 @@
 </tr>
 <?php
     include "koneksi.php";
-    $prodi = $_GET["prodi"];
-    $query = "SELECT * FROM mahasiswa WHERE prodi LIKE '$prodi' ORDER BY nim ASC";
-    $result = mysqli_query($connection, $query);
+    $request = $_POST['request'];
+    $query = "SELECT * FROM mahasiswa WHERE prodi = '$request'";
+    $choose = mysqli_query($connection, $query);
     $i = 0;
-    while ($data = mysqli_fetch_array($result)) :
+    while ($data = mysqli_fetch_array($choose)) :
     $i++;
 ?>
 <tr>
